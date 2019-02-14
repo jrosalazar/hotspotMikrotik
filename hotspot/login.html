@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>INTERCONEXIONES > login</title>
+	<meta charset="utf-8">
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="expires" content="-1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="css/main.css">
+	<!--Import bootstrap4.css-->
+	<link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	 crossorigin="anonymous">
+	<!-- animate -->
+	<link rel="stylesheet" href="css/animate.min.css">
+	<!-- fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700|Oxygen:400,700" rel="stylesheet">
+</head>
+
+<body class="bg container">
+	$(if chap-id)
+	<form name="sendin" action="$(link-login-only)" method="post">
+		<input type="hidden" name="username" />
+		<input type="hidden" name="password" />
+		<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+	</form>
+
+	<script type="text/javascript" src="/md5.js"></script>
+	<script type="text/javascript">
+		function doLogin() {
+			document.sendin.username.value = document.login.username.value;
+			document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+			document.sendin.submit();
+			return false;
+		}
+	</script>
+	$(endif)
+
+	<header class="row text-center">
+		<div class="col-12 animated rotateIn">
+			<a href="$(link-login-only)?target=lv&amp;dst=$(link-orig-esc)"><img src="img/icono.png" width="80vw" height="80vh"
+				 alt="logo"></a>
+		</div>
+		<div class="col-12 animated fadeIn delay-1s" style="color:#5BA1FA; font-family: 'Comfortaa', cursive; font-size: 2rem;">
+			<span class="title py-4"><strong>INTERCONEXIONES</strong></span>
+		</div>
+	</header>
+	<p class="text-center col-12 my-4">
+		Por favor, digita tus datos de usuario y disfruta del servicio en tu zona WiFi<br />$(if trial == 'yes')Si deseas
+		un usuario libre,<a style="color: blue" href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">
+			ingresa aquí</a>.$(endif)
+	</p>
+	<section class="card my-5 p-4 shadow-lg animated fadeInLeft">
+		<form class="text-center" name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()"
+		 $(endif)>
+			<div class="form-group">
+				<input type="hidden" name="dst" value="$(link-orig)" />
+				<input type="hidden" name="popup" value="true" />
+			</div>
+			<div class="form-group">
+				<label class=" text-right" for="labelUsuario">Usuario</label>
+				<input name="username" type="text" class="form-control " id="labelUsuario" aria-describedby="usuario" value="$(username)"
+				 placeholder=" Enter email">
+				<small id="usuario" class=" form-text text-muted">Evita ser estafado. Nunca compartas tus datos</small>
+			</div>
+			<div class="form-group">
+				<label for="inputPassword6">Contraseña </label>
+				<input name="password" type="password" id="inputPassword6" class="form-control mx-sm-3" aria-describedby="passwordHelpInline">
+				<small id="passwordHelpInline" class="text-muted">
+					Debe ser entre 8-20 dígitos.
+				</small>
+			</div>
+			<div class="text-center ">
+				<input class="btn btn-primary animated bounce delay-2s" type="submit" value="Bienvenido">
+			</div>
+		</form>
+	</section>
+	<div class="text-center">Powered by MikroTik RouterOS</div>
+	$(if error)
+	<div style="color: #FF8080; font-size: 9px">$(error)</div>$(endif)
+	</td>
+	</tr>
+	</table>
+	<footer class="text-center">
+		<div class="col-12">
+			<a href="http://julianfran.co" target="_blank" style="border: none;">Página diseñada por JulianFranco</a>
+		</div>
+		<div class="col-12">
+			<a href="http://www.freepik.com" style="font-size: 50%;">Background designed by Página dtarlina / Freepik</a>
+		</div>
+	</footer>
+
+	<script type="text/javascript">
+		<!--
+		document.login.username.focus();
+		//-->
+	</script>
+</body>
+
+</html>
